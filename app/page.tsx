@@ -27,12 +27,12 @@ const memberTypes = [
   {
     title: 'Sports Organisation',
     description:
-      'An organisation that supports, develops, delivers or promotes sport, athletes or sporting communities.',
+      'Entities or associations that govern a particular body of sport, such as Basketball, Soccer, Rugby, Cricket, Baseball, Netball, etc.',
   },
   {
     title: 'Sporting Body',
     description:
-      'A governing, administrative or representative body responsible for overseeing a sport, competition or region.',
+      'A governing, administrative or representative body responsible for overseeing an entire sports entity, such as NRL, AFL, NFL, NBA, NHL, etc.',
   },
   {
     title: 'Sports Content Creator',
@@ -40,16 +40,26 @@ const memberTypes = [
       'A person or organisation creating sports videos, interviews, podcasts, stories, news or entertainment.',
   },
   {
-    title: 'Spectator',
+    title: 'Subscriber',
     description:
-      'A parent, coach, club representative, business, supporter or other person who wants to watch and explore sport.',
+      'A registered business entity of any kind seeking 24/7 visibility to the entire sports community within the platform - locally or globally. Subscriptions start from $15 /month.',
   },
+]
+
+const aboutSupatalented = [
+  'ATHLETES - Be SEEN. Get FOUND. UPLOAD your sports HIGHLIGHT videos, your GAME, TRAINING or AWESOME MOMENT videos and show the world some COOL stuff!',
+  'SPORTS COACHES, CLUBS, ACADEMIES and ORGANISATIONS - POST your sports videos and grow your presence and position in your community.',
+  'CONTENT CREATORS and PODCASTERS - Stay relevant and SEEN on a global sports platform, to a WORLDWIDE audience.',
+  'SPECTATORS and the GENERAL PUBLIC - WATCH, SAVE and SHARE endless sports videos. Connect with BUSINESSES for products and services.',
+  'EVERYONE - STAY READY through your sports journey or your daily routine by connecting with BUSINESSES for products and services - locally or online.',
+  'BUSINESSES - SUBSCRIBE from just $15 /month to stay visible 24/7 to EVERYONE on the platform - locally or globally.',  
+  'SCOUTS/AGENTS - Finally! A dedicated sports platform for discovering athletes from all around the WORLD - in ONE place.',
 ]
 
 export default function HomePage() {
   const router = useRouter()
 
-  const [showPromoVideo, setShowPromoVideo] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
   const [showMemberTypes, setShowMemberTypes] = useState(false)
 
   return (
@@ -113,6 +123,9 @@ export default function HomePage() {
         }
 
         .logo-word {
+          padding: 0;
+          border: none;
+          background: transparent;
           font-family: Arial Black, Arial, Helvetica, sans-serif;
           font-weight: 900;
           -webkit-text-stroke: 0.35px currentColor;
@@ -124,6 +137,11 @@ export default function HomePage() {
           margin: 0;
           white-space: nowrap;
           color: #898f90;
+          cursor: pointer;
+        }
+
+        .logo-word:active {
+          transform: scale(0.99);
         }
 
         .logo-word .blue {
@@ -147,7 +165,7 @@ export default function HomePage() {
 
         .launch-content {
           width: 100%;
-          margin-top: auto;
+          margin-top: 16px;
           margin-bottom: auto;
           display: flex;
           flex-direction: column;
@@ -170,7 +188,7 @@ export default function HomePage() {
         .early-message {
           max-width: 360px;
           margin: 18px 0 0;
-          color: #ffffff;
+          color: #f3fc01;
           font-family: Arial, Helvetica, sans-serif;
           font-size: 19px;
           font-weight: 800;
@@ -179,7 +197,7 @@ export default function HomePage() {
         }
 
         .early-message strong {
-          color: #FFFFFF;
+          color: #f3fc01;
           font-family: Arial Black, Arial, Helvetica, sans-serif;
           font-weight: 900;
         }
@@ -209,46 +227,11 @@ export default function HomePage() {
           backdrop-filter: blur(8px);
         }
 
-        .play-wrap {
+        .video-space {
           width: 62px;
           height: 62px;
-          border-radius: 10px;
-          border: 3px solid rgba(255, 255, 255, 0.9);
-          display: flex;
-          align-items: center;
-          justify-content: center;
           margin-top: 20px;
-          background: linear-gradient(
-            145deg,
-            rgba(14, 21, 219, 0.95),
-            rgba(3, 8, 80, 0.92)
-          );
-          cursor: pointer;
-          animation: premiumPulse 2.15s ease-in-out infinite;
-          box-shadow:
-            0 0 0 4px rgba(14, 21, 219, 0.35),
-            0 0 18px rgba(10, 18, 251, 0.9),
-            inset 0 0 14px rgba(255, 255, 255, 0.22);
-        }
-
-        .play-triangle {
-          width: 0;
-          height: 0;
-          border-top: 13px solid transparent;
-          border-bottom: 13px solid transparent;
-          border-left: 20px solid #ffffff;
-          margin-left: 5px;
-        }
-
-        @keyframes premiumPulse {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-
-          50% {
-            transform: scale(1.075);
-          }
+          flex-shrink: 0;
         }
 
         .cta-wrap {
@@ -277,6 +260,7 @@ export default function HomePage() {
         }
 
         .cta.join {
+          color: #f3fc01;
           border-color: #2858ff;
           background: linear-gradient(
             180deg,
@@ -301,38 +285,6 @@ export default function HomePage() {
           font-size: 14px;
           line-height: 1;
           vertical-align: middle;
-        }
-
-        .promo-overlay {
-          position: fixed;
-          inset: 0;
-          background: #000000;
-          z-index: 99999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .promo-video {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          background: #000000;
-        }
-
-        .promo-close {
-          position: fixed;
-          top: 22px;
-          right: 24px;
-          z-index: 100001;
-          width: 48px;
-          height: 48px;
-          border: none;
-          background: rgba(0, 0, 0, 0.55);
-          color: #ffffff;
-          font-size: 44px;
-          line-height: 42px;
-          cursor: pointer;
         }
 
         .info-overlay {
@@ -378,6 +330,24 @@ export default function HomePage() {
           color: #ffffff;
           font-size: 25px;
           line-height: 1;
+        }
+
+        .about-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .about-item {
+          margin: 0;
+          padding: 14px 13px;
+          border-left: 4px solid #0f7dfa;
+          background: rgba(255, 255, 255, 0.07);
+          color: #ffffff;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1.4;
         }
 
         .member-list {
@@ -477,16 +447,10 @@ export default function HomePage() {
             font-size: 10px;
           }
 
-          .play-wrap {
+          .video-space {
             width: 48px;
             height: 48px;
             margin-top: 11px;
-          }
-
-          .play-triangle {
-            border-top-width: 10px;
-            border-bottom-width: 10px;
-            border-left-width: 16px;
           }
 
           .cta {
@@ -507,38 +471,38 @@ export default function HomePage() {
           className="badge"
         />
 
-        <div className="logo-word">
+        <button
+          type="button"
+          className="logo-word"
+          onClick={() => setShowAbout(true)}
+          aria-label="What is SUPATALENTED?"
+        >
           SUPA<span className="blue">TALENTED</span>
-        </div>
+        </button>
 
         <div className="slogan">
           Be Seen <span className="blue">In Sport</span>
         </div>
 
         <section className="launch-content">
-          <h1 className="coming-soon">COMING SOON</h1>
+          <h1 className="coming-soon">LAUNCHING SOON</h1>
 
           <p className="early-message">
-            <strong>REGISTER NOW</strong>
+            <strong>JOIN THE WAITLIST</strong>
             <br />
-            <strong>GET YOUR EARLY-BIRD FREEBIES</strong>
+            <strong>BEFORE LAUNCH</strong>
+            <br />
+            <strong>AND BE IN TO WIN PRIZES</strong>
           </p>
 
           <div className="specials">
-            <div className="special">FREE MEMBERSHIP</div>
-            <div className="special">FREE BADGE</div>
-            <div className="special">FREE CAP</div>
-            <div className="special">SPECIAL ACCESS</div>
+            <div className="special">MEMBERSHIP</div>
+            <div className="special">MERCHANDISE</div>
+            <div className="special">ACCESSORIES</div>
+            <div className="special">SUBSCRIPTION</div>
           </div>
 
-          <button
-            type="button"
-            className="play-wrap"
-            aria-label="Watch SUPATALENTED video"
-            onClick={() => setShowPromoVideo(true)}
-          >
-            <span className="play-triangle" />
-          </button>
+          <div className="video-space" aria-hidden="true" />
         </section>
 
         <div className="cta-wrap">
@@ -547,12 +511,12 @@ export default function HomePage() {
             className="cta join"
             onClick={() => router.push('/early-access')}
           >
-            JOIN EARLY
+            JOIN THE WAITLIST HERE
           </button>
 
           <button
             type="button"
-            className="cta"
+            className="cta member-types"
             onClick={() => setShowMemberTypes(true)}
           >
             <span className="question-mark">?</span>
@@ -561,33 +525,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {showPromoVideo && (
+      {showAbout && (
         <div
-          className="promo-overlay"
+          className="info-overlay"
           role="dialog"
           aria-modal="true"
-          aria-label="SUPATALENTED promotional video"
+          aria-labelledby="about-supatalented-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowAbout(false)
+            }
+          }}
         >
-          <button
-            type="button"
-            className="promo-close"
-            onClick={() => setShowPromoVideo(false)}
-            aria-label="Close promotional video"
-          >
-            ×
-          </button>
+          <section className="info-modal">
+            <button
+              type="button"
+              className="info-close"
+              onClick={() => setShowAbout(false)}
+              aria-label="Close SUPATALENTED information"
+            >
+              ×
+            </button>
 
-          <video
-            className="promo-video"
-            autoPlay
-            controls
-            playsInline
-            preload="metadata"
-            onEnded={() => setShowPromoVideo(false)}
-          >
-            <source src="/videos/beseen.mp4" type="video/mp4" />
-            Your browser does not support video playback.
-          </video>
+            <h2 id="about-supatalented-title" className="info-title">
+              WHAT IS SUPATALENTED?
+            </h2>
+
+            <div className="about-list">
+              {aboutSupatalented.map((sentence) => (
+                <p className="about-item" key={sentence}>
+                  {sentence}
+                </p>
+              ))}
+            </div>
+          </section>
         </div>
       )}
 
