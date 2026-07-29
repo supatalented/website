@@ -271,9 +271,13 @@ export default function EarlyAccessPage() {
       setSubmitted(true)
       setFormData(initialFormData)
       setMessage(
-        'You have successfully joined the SUPATALENTED waitlist!',
+        'FORM SUBMITTED SUCCESSFULLY! Returning you to the SUPATALENTED landing page.',
       )
       setMessageType('success')
+
+      setTimeout(() => {
+        router.push('/')
+      }, 3000)
     } catch {
       showError(
         'Your registration could not be submitted. Please try again.',
@@ -972,7 +976,7 @@ export default function EarlyAccessPage() {
           className="back-button"
           onClick={() => router.push('/')}
         >
-          Return to landing page
+          Return to main page
         </button>
       </section>
     </main>
