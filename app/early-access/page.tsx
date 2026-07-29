@@ -957,7 +957,7 @@ export default function EarlyAccessPage() {
             >
               {submitting
                 ? 'SUBMITTING...'
-                : 'JOIN the WAITLIST and WIN PRIZES'}
+                : 'ENTER TO WIN PRIZES'}
             </button>
           </form>
         )}
