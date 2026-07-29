@@ -44,6 +44,11 @@ const memberTypes = [
     description:
       'A registered business entity of any kind seeking 24/7 visibility to the entire sports community within the platform - locally or globally. Subscriptions start from $15 /month.',
   },
+    {
+    title: 'Spectator / General Public',
+    description:
+      'Any member of the general public >13 years of age interested in watching, saving and sharing sports videos, connecting with businesses for products and services, or discovering athletes.',
+  },
 ]
 
 const aboutSupatalented = [
@@ -56,11 +61,15 @@ const aboutSupatalented = [
   'SCOUTS/AGENTS - Finally! A dedicated sports platform for discovering athletes from all around the WORLD - in ONE place.',
 ]
 
+const badgeInformation =
+  'SUPATALENTED is the governed Sports Industry Hub uniting, connecting, presenting and servicing the athletic and global business worlds in one place. It is purposely built for EVERYONE to be SEEN better, to be DISCOVERED easier, and to STAY READY with help from the available BUSINESS community - with youth online safety at its core.'
+
 export default function HomePage() {
   const router = useRouter()
 
   const [showAbout, setShowAbout] = useState(false)
   const [showMemberTypes, setShowMemberTypes] = useState(false)
+  const [showBadgeInfo, setShowBadgeInfo] = useState(false)
 
   return (
     <main className="home-root">
@@ -115,10 +124,23 @@ export default function HomePage() {
           transform: translateY(-18px);
         }
 
-        .badge {
+        .badge-button {
           width: 140px;
+          padding: 0;
+          margin: 0 0 -36px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+        }
+
+        .badge-button:active {
+          transform: scale(0.97);
+        }
+
+        .badge {
+          display: block;
+          width: 100%;
           height: auto;
-          margin-bottom: -36px;
           filter: drop-shadow(1px 0 0 #ffffff);
         }
 
@@ -138,6 +160,7 @@ export default function HomePage() {
           white-space: nowrap;
           color: #898f90;
           cursor: pointer;
+          animation: logoPulse 2.2s ease-in-out infinite;
         }
 
         .logo-word:active {
@@ -146,6 +169,19 @@ export default function HomePage() {
 
         .logo-word .blue {
           color: #0e15db;
+        }
+
+        @keyframes logoPulse {
+          0%,
+          100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 0 rgba(14, 21, 219, 0));
+          }
+
+          50% {
+            transform: scale(1.045);
+            filter: drop-shadow(0 0 10px rgba(14, 21, 219, 0.9));
+          }
         }
 
         .slogan {
@@ -180,6 +216,10 @@ export default function HomePage() {
           font-weight: 900;
           line-height: 0.95;
           letter-spacing: -0.045em;
+          padding: 0;
+          border: none;
+          background: transparent;
+          cursor: pointer;
           text-shadow:
             0 0 12px rgba(14, 21, 219, 0.95),
             0 3px 8px rgba(0, 0, 0, 0.9);
@@ -394,7 +434,7 @@ export default function HomePage() {
             padding-bottom: 38px;
           }
 
-          .badge {
+          .badge-button {
             width: 155px;
           }
 
@@ -413,7 +453,7 @@ export default function HomePage() {
             transform: translateY(-14px);
           }
 
-          .badge {
+          .badge-button {
             width: 105px;
             margin-bottom: -29px;
           }
@@ -465,11 +505,18 @@ export default function HomePage() {
       `}</style>
 
       <section className="home-shell">
-        <img
-          src="/badge/logo-badge.png"
-          alt="SUPATALENTED badge"
-          className="badge"
-        />
+        <button
+          type="button"
+          className="badge-button"
+          onClick={() => setShowBadgeInfo(true)}
+          aria-label="What does the SUPATALENTED badge represent?"
+        >
+          <img
+            src="/badge/logo-badge.png"
+            alt="SUPATALENTED badge"
+            className="badge"
+          />
+        </button>
 
         <button
           type="button"
@@ -485,7 +532,14 @@ export default function HomePage() {
         </div>
 
         <section className="launch-content">
-          <h1 className="coming-soon">LAUNCHING SOON</h1>
+          <button
+            type="button"
+            className="coming-soon"
+            onClick={() => router.push('/early-access')}
+            aria-label="Join the SUPATALENTED waitlist"
+          >
+            LAUNCHING SOON
+          </button>
 
           <p className="early-message">
             <strong>JOIN THE WAITLIST</strong>
@@ -524,6 +578,37 @@ export default function HomePage() {
           </button>
         </div>
       </section>
+
+        {showBadgeInfo && (
+          <div
+            className="info-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="badge-information-title"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                setShowBadgeInfo(false)
+              }
+            }}
+          >
+            <section className="info-modal">
+              <button
+                type="button"
+                className="info-close"
+                onClick={() => setShowBadgeInfo(false)}
+                aria-label="Close SUPATALENTED badge information"
+              >
+                ×
+              </button>
+
+              <h2 id="badge-information-title" className="info-title">
+                SUPATALENTED
+              </h2>
+
+              <p className="about-item">{badgeInformation}</p>
+            </section>
+          </div>
+        )}
 
       {showAbout && (
         <div
