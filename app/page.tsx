@@ -7,22 +7,22 @@ const memberTypes = [
   {
     title: 'Athlete',
     description:
-      'A person aged 13 or older who participates in sport and wants to be seen better, discovered easier, stay ready and find opportunity.',
+      'A person aged 13 or older who participates in sport.',
   },
   {
     title: 'Registered Sports Coach',
     description:
-      'A qualified or registered coach who provides sports coaching, training or athlete development.',
+      'A qualified sports coach registered as a business.',
   },
   {
     title: 'Sports Academy',
     description:
-      'A structured academy that provides sports coaching, training or athlete development programs.',
+      'A registered and structured academy that provides sports coaching, training or athlete development programs.',
   },
   {
     title: 'Sports Club',
     description:
-      'A sporting club representing athletes, teams, members and its local or wider sporting community.',
+      'A community sporting club representing athletes, teams, members and its local or wider sporting community.',
   },
   {
     title: 'Sports Organisation',
@@ -42,27 +42,21 @@ const memberTypes = [
   {
     title: 'Subscriber',
     description:
-      'A registered business entity of any kind seeking 24/7 visibility to the entire sports community within the platform - locally or globally. Subscriptions start from $15 /month.',
+      'A registered business entity of ANY kind.',
   },
     {
-    title: 'Spectator / General Public',
+    title: 'Spectator/The Public',
     description:
-      'Any member of the general public >13 years of age interested in watching, saving and sharing sports videos, connecting with businesses for products and services, or discovering athletes.',
+      'Any member of the general public >13 years of age.',
   },
 ]
 
 const aboutSupatalented = [
-  'ATHLETES - Be SEEN. Get FOUND. UPLOAD your sports HIGHLIGHT videos, your GAME, TRAINING or AWESOME MOMENT videos and show the world some COOL stuff!',
-  'SPORTS COACHES, CLUBS, ACADEMIES and ORGANISATIONS - POST your sports videos and grow your presence and position in your community.',
-  'CONTENT CREATORS and PODCASTERS - Stay relevant and SEEN on a global sports platform, to a WORLDWIDE audience.',
-  'SPECTATORS and the GENERAL PUBLIC - WATCH, SAVE and SHARE endless sports videos. Connect with BUSINESSES for products and services.',
-  'EVERYONE - STAY READY through your sports journey or your daily routine by connecting with BUSINESSES for products and services - locally or online.',
-  'BUSINESSES - SUBSCRIBE from just $15 /month to stay visible 24/7 to EVERYONE on the platform - locally or globally.',  
-  'SCOUTS/AGENTS - Finally! A dedicated sports platform for discovering athletes from all around the WORLD - in ONE place.',
+  'Where EVERYONE in SPORT is SEEN better, DISCOVERED easier in ONE Governed and User-Safe place. From Athletes to Businesses - WORLDWIDE. JOIN the EARLY BIRD WAITLIST and BE IN TO WIN - ITS ALL FREE!!! BE SEEN IN SPORT. FUN, FREE, EASY, AND SAFE.',
 ]
 
 const badgeInformation =
-  'SUPATALENTED is the governed Sports Industry Hub uniting, connecting, presenting and servicing the athletic and global business worlds in one place. It is purposely built for EVERYONE to be SEEN better, to be DISCOVERED easier, and to STAY READY with help from the available BUSINESS community - with youth online safety at its core.'
+  'POST YOUR GRASSROOTS HIGHLIGHT VIDEOS and SHOW THE WORLD SOME COOL STUFF. EVERYONE DESERVES THEIR PLACE IN SPORT. JOIN THE FUN NOW. BE SEEN IN SPORT.'
 
 export default function HomePage() {
   const router = useRouter()
@@ -536,7 +530,7 @@ export default function HomePage() {
             type="button"
             className="coming-soon"
             onClick={() => router.push('/early-access')}
-            aria-label="Join the SUPATALENTED waitlist"
+            aria-label="GET IN EARLY."
           >
             LAUNCHING SOON
           </button>
@@ -544,16 +538,16 @@ export default function HomePage() {
           <p className="early-message">
             <strong>JOIN THE WAITLIST</strong>
             <br />
-            <strong>BEFORE LAUNCH</strong>
+            <strong>NOW</strong>
             <br />
-            <strong>AND BE IN TO WIN PRIZES</strong>
+            <strong>AND WIN</strong>
           </p>
 
           <div className="specials">
-            <div className="special">MEMBERSHIP</div>
+            <div className="special">MEMBERSHIPS</div>
             <div className="special">MERCHANDISE</div>
             <div className="special">ACCESSORIES</div>
-            <div className="special">SUBSCRIPTION</div>
+            <div className="special">SUBSCRIPTIONS</div>
           </div>
 
           <div className="video-space" aria-hidden="true" />
