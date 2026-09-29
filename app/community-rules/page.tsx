@@ -60,17 +60,6 @@ export default function CommunityRulesPage() {
           text-align: center;
         }
 
-        .rules-draft {
-          margin: 0 0 26px;
-          padding: 14px 16px;
-          border: 1px solid #fdfd0e;
-          color: #fdfd0e;
-          background: rgba(253, 253, 14, .07);
-          font-size: 14px;
-          font-weight: 800;
-          line-height: 1.55;
-        }
-
         .rules-intro {
           padding: 18px;
           border: 1px solid rgba(90, 157, 255, .35);
@@ -153,7 +142,8 @@ export default function CommunityRulesPage() {
           <div className="rules-intro">
             <p>
               These Rules apply to videos, profiles, Friends, Chat,
-              TEEM and all other interactions on SUPATALENTED.
+              TEEM and all other interactions on SUPATALENTED,
+              operated by Supatalented Pty Ltd.
             </p>
 
             <p>
@@ -205,7 +195,10 @@ export default function CommunityRulesPage() {
               <li>
                 If a child is in immediate danger, contact local
                 emergency services. Report a child-safety concern
-                in the app or to [urgent safety email]. Do not
+                in the app or email{' '}
+                <a href="mailto:support@supatalented.com">
+                  support@supatalented.com
+                </a>. Do not
                 distribute suspected abusive material while
                 reporting it.
               </li>
@@ -302,8 +295,10 @@ export default function CommunityRulesPage() {
             <p>
               Use the in-app <strong>Report Video</strong> or
               <strong>Report User</strong> action when available,
-              or email support@supatalented.com, relevant time
-              and a short explanation. Block a user to stop
+              or email{' '}
+              <a href="mailto:support@supatalented.com">
+                support@supatalented.com
+              </a>{' '}with the relevant time and a short explanation. Block a user to stop
               unwanted interaction where the feature applies. If
               you cannot access your account, report by email. Do
               not make knowingly false reports or repost harmful
@@ -319,8 +314,10 @@ export default function CommunityRulesPage() {
               not a promise of a particular outcome or a guaranteed
               response time. We may not share another person’s
               private investigation details with you. To ask us to
-              review an action on your account, write to support@supatalented.com 
-              and include your account email and any report reference.
+              review an action on your account, write to{' '}
+              <a href="mailto:support@supatalented.com">
+                support@supatalented.com
+              </a>{' '}and include your account email and any report reference.
             </p>
           </section>
 
@@ -332,11 +329,13 @@ export default function CommunityRulesPage() {
               you offline. Tell a trusted adult if contact feels
               uncomfortable. Guardians should discuss what a public
               video can reveal, review permissions and use the
-              safety channels; courtesy emails cover certain
-              actions and are not full monitoring. Eligibility
-              for Australian users aged 13–15 remains subject to
-              the separate legal assessment identified in the
-              Terms and Privacy Policy.
+              safety channels; any guardian notifications do not
+              replace supervision. Accounts for children under 13
+              are not permitted. Users aged 13–17 are subject to
+              guardian approval and access controls. A higher
+              minimum age may apply under the law where you live;
+              guardian permission cannot override that restriction.
+              See the Terms of Use and Privacy Policy.
             </p>
           </section>
         </article>
