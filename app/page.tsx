@@ -626,7 +626,7 @@ export default function HomePage() {
           <a href="#global-stage">THE STAGE</a>
           <a href="#everyone">EVERYONE</a>
           <a href="#be-seen">BE SEEN</a>
-          <a className="nav-app" href="https://supatalented-gamma.vercel.app">GET THE APP</a>
+          <a className="nav-app" href="/coming-soon" onClick={(event) => { event.preventDefault(); openPolicy('/coming-soon') }}>GET THE APP</a>
         </nav>
       </header>
       <div className="home-hero" id="home">
@@ -663,7 +663,7 @@ export default function HomePage() {
           <button
             type="button"
             className="cta"
-            onClick={() => window.location.assign('https://supatalented-gamma.vercel.app')}
+            onClick={() => openPolicy('/coming-soon')}
           >
             <span className="cta-title">GET THE APP</span>
           </button>
@@ -746,7 +746,7 @@ export default function HomePage() {
               {features[selectedFeature].detail}
             </div>
           )}
-          <a className="website-action" href="https://supatalented-gamma.vercel.app">GET THE APP <span aria-hidden="true">&nbsp;↗</span></a>
+          <a className="website-action" href="/coming-soon" onClick={(event) => { event.preventDefault(); openPolicy('/coming-soon') }}>GET THE APP <span aria-hidden="true">&nbsp;↗</span></a>
         </div>
       </section>
 
