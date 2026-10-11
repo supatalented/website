@@ -86,7 +86,7 @@ export default function TermsPage() {
           margin-bottom: 0;
         }
         .terms-page a {
-          color: #fdfd0e;
+          color: #FFFFFF;
           text-underline-offset: 3px;
         }
         .terms-page a:focus-visible {
@@ -112,7 +112,6 @@ export default function TermsPage() {
             <p>
               <strong>Operator:</strong> Supatalented Pty Ltd
             </p>
-            <p><strong>Last updated:</strong> 29 September 2026</p>
           </div>
 
           <section className="terms-section">
