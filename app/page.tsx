@@ -200,6 +200,7 @@ export default function HomePage() {
         }
         .logo-word .blue {
           color: #0e15db;
+        }
 
         .logo {
             position: relative;
@@ -232,8 +233,6 @@ export default function HomePage() {
               drop-shadow(0 0 14px rgba(255, 255, 255, 0.95))
               drop-shadow(0 0 30px rgba(255, 255, 255, 0.75));
           }
-
-        }
         .headline-button {
           margin: 0 0 38px;
           padding: 0;
@@ -794,34 +793,44 @@ export default function HomePage() {
                 id="home-about-title"
                 className="about-line about-line-primary"
               >
-                SUPATALENTED is for EVERYONE.
+                SUPATALENTED
               </span>
-              <span className="about-line">
-                Your Sports Industry HUB.
-              </span>
-              <span className="about-line about-line-gap">
-                Post Sports Videos.
-              </span>
-              <span className="about-line">
-                Watch, Save &amp; Share them.
-              </span>
-              <span className="about-line">
-                Make Friends In Sport.
-              </span>
-              <span className="about-line">
-                Create Private Sports Groups.
-              </span>
-              <span className="about-line">
-                Fun. Easy. Safe. FREE.
-              </span>
-              <button
-                type="button"
-                className="about-video-cta"
-                onClick={openPromoVideo}
-              >
-                ALL IN ONE PLACE
-              </button>
-            </div>
+
+            <span className="about-line about-line-primary">
+              is for EVERYONE.
+            </span>
+
+            <span className="about-line about-line-gap">
+              Post Sports Videos.
+            </span>
+
+            <span className="about-line">
+              Watch, Save &amp; Share them.
+            </span>
+
+            <span className="about-line">
+              Make Friends In Sport.
+            </span>
+
+            <span className="about-line">
+              Create Private Sports Groups.
+            </span>
+
+            <span className="about-line">
+              Fun. Easy. Safe. FREE.
+            </span>
+
+            <span className="about-line about-line-gap">
+              Join as an ATHLETE, a SPORTS CLUB,{' '}
+              an ACADEMY COACH, a SPORTS ACADEMY,{' '}
+              a SPORTS ORGANISATION, a SPORTING BODY,{' '}
+              a SPORTS CONTENT CREATOR, or just as a SPECTATOR.
+            </span>
+
+            <span className="about-line about-line-gap">
+              Why join?    To Be Seen In Sport.
+            </span>
+          </div>
           </section>
         </div>
       )}
