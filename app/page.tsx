@@ -1,34 +1,57 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 export default function HomePage() {
   const router = useRouter()
-  const [showPromoVideo, setShowPromoVideo] = useState(false)
   const [showAboutPopup, setShowAboutPopup] = useState(false)
   const [selectedRole, setSelectedRole] = useState<number | null>(null)
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null)
   const aboutCloseButtonRef = useRef<HTMLButtonElement>(null)
-  const videoCloseButtonRef = useRef<HTMLButtonElement>(null)
+  const heroShellRef = useRef<HTMLElement>(null)
+  const heroLogoRef = useRef<HTMLDivElement>(null)
+  const heroTaglineRef = useRef<HTMLButtonElement>(null)
+  const heroCtaRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const shell = heroShellRef.current
+    const logo = heroLogoRef.current
+    const tagline = heroTaglineRef.current
+    const cta = heroCtaRef.current
+    if (!shell || !logo || !tagline || !cta) return
+
+    const centerTagline = () => {
+      tagline.style.setProperty('--tagline-offset', '0px')
+      const logoBounds = logo.getBoundingClientRect()
+      const ctaBounds = cta.getBoundingClientRect()
+      const taglineBounds = tagline.getBoundingClientRect()
+      const targetCenter = (logoBounds.bottom + ctaBounds.top) / 2
+      const currentCenter = taglineBounds.top + taglineBounds.height / 2
+      tagline.style.setProperty('--tagline-offset', `${targetCenter - currentCenter}px`)
+    }
+
+    centerTagline()
+    const observer = new ResizeObserver(centerTagline)
+    observer.observe(shell)
+    observer.observe(logo)
+    observer.observe(tagline)
+    observer.observe(cta)
+    window.addEventListener('resize', centerTagline)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', centerTagline)
+    }
+  }, [])
   useEffect(() => {
     if (showAboutPopup) {
       aboutCloseButtonRef.current?.focus()
     }
   }, [showAboutPopup])
   useEffect(() => {
-    if (showPromoVideo) {
-      videoCloseButtonRef.current?.focus()
-    }
-  }, [showPromoVideo])
-  useEffect(() => {
-    if (!showAboutPopup && !showPromoVideo) {
+    if (!showAboutPopup) {
       return
     }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') {
-        return
-      }
-      if (showPromoVideo) {
-        setShowPromoVideo(false)
         return
       }
       setShowAboutPopup(false)
@@ -37,11 +60,7 @@ export default function HomePage() {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [showAboutPopup, showPromoVideo])
-  const openPromoVideo = () => {
-    setShowAboutPopup(false)
-    setShowPromoVideo(true)
-  }
+  }, [showAboutPopup])
   useEffect(() => {
     const savedPosition = sessionStorage.getItem('supatalented-website-scroll')
     if (savedPosition === null) return
@@ -235,6 +254,7 @@ export default function HomePage() {
           }
         .headline-button {
           margin: 0 0 38px;
+          transform: translateY(var(--tagline-offset, 0px));
           padding: 0;
           border: 0;
           background: transparent;
@@ -244,7 +264,7 @@ export default function HomePage() {
           user-select: none;
         }
         .headline-button:active {
-          transform: scale(0.99);
+          transform: translateY(var(--tagline-offset, 0px)) scale(0.99);
         }
         .headline-top {
           display: block;
@@ -261,46 +281,13 @@ export default function HomePage() {
           font-weight: 900;
           line-height: 1;
         }
-        .play-button {
+        .hero-layout-space {
           width: 82px;
           height: 82px;
           margin-top: 6px;
           margin-bottom: 0;
           padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 3px solid rgba(255, 255, 255, 0.9);
-          border-radius: 10px;
-          background:
-            linear-gradient(
-              145deg,
-              rgba(14, 21, 219, 0.95),
-              rgba(3, 8, 80, 0.92)
-            );
-          box-shadow:
-            0 0 0 5px rgba(14, 21, 219, 0.35),
-            0 0 22px rgba(10, 18, 251, 0.9),
-            inset 0 0 18px rgba(255, 255, 255, 0.22);
-          cursor: pointer;
-          animation: premiumPulse 2.15s ease-in-out infinite;
-        }
-        .play-triangle {
-          width: 0;
-          height: 0;
-          margin-left: 7px;
-          border-top: 17px solid transparent;
-          border-bottom: 17px solid transparent;
-          border-left: 25px solid #ffffff;
-        }
-        @keyframes premiumPulse {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.075);
-          }
+          flex-shrink: 1;
         }
         .cta-wrap {
           width: 100%;
@@ -402,25 +389,6 @@ export default function HomePage() {
         .about-line-gap {
           margin-top: 12px;
         }
-        .about-video-cta {
-          margin: 16px 0 0;
-          padding: 4px 6px;
-          border: 0;
-          background: transparent;
-          color: #fdfd0e;
-          font-family: Arial Black, Arial, Helvetica, sans-serif;
-          font-size: 20px;
-          font-weight: 900;
-          line-height: 1.2;
-          text-align: center;
-          text-decoration: underline;
-          text-decoration-thickness: 2px;
-          text-underline-offset: 5px;
-          cursor: pointer;
-        }
-        .about-video-cta:active {
-          transform: scale(0.98);
-        }
         .about-close {
           position: absolute;
           top: 8px;
@@ -433,36 +401,6 @@ export default function HomePage() {
           color: #ffffff;
           font-size: 34px;
           line-height: 34px;
-          cursor: pointer;
-        }
-        .promo-overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 99999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #000000;
-        }
-        .promo-video {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          background: #000000;
-        }
-        .promo-close {
-          position: fixed;
-          top: 22px;
-          right: 24px;
-          z-index: 100001;
-          width: 48px;
-          height: 48px;
-          padding: 0;
-          border: none;
-          background: rgba(0, 0, 0, 0.55);
-          color: #ffffff;
-          font-size: 44px;
-          line-height: 42px;
           cursor: pointer;
         }
         @media (max-width: 767px) {
@@ -479,8 +417,7 @@ export default function HomePage() {
           .about-line {
             font-size: 16px;
           }
-          .about-line-primary,
-          .about-video-cta {
+          .about-line-primary {
             font-size: 18px;
           }
         }
@@ -489,7 +426,7 @@ export default function HomePage() {
             max-width: 520px;
             padding-top: 4.5vh;
           }
-          .play-button {
+          .hero-layout-space {
             width: 86px;
             height: 86px;
           }
@@ -510,11 +447,6 @@ export default function HomePage() {
           }
           .cta {
             min-height: 50px;
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .play-button {
-            animation: none;
           }
         }
         .website-section {
@@ -629,13 +561,13 @@ export default function HomePage() {
         </nav>
       </header>
       <div className="home-hero" id="home">
-      <section className="home-shell">
+      <section className="home-shell" ref={heroShellRef}>
         <img
           src="/badge/logo-badge.png"
           alt="Supatalented diamond badge"
           className="badge"
         />
-        <div className="logo" aria-label="SUPATALENTED">
+        <div className="logo" aria-label="SUPATALENTED" ref={heroLogoRef}>
           <span className="logo-word">
             SUPA<span className="blue">TALENTED</span>
           </span>
@@ -643,6 +575,7 @@ export default function HomePage() {
         <button
           type="button"
           className="headline-button"
+          ref={heroTaglineRef}
           aria-label="About SUPATALENTED"
           aria-haspopup="dialog"
           onClick={() => setShowAboutPopup(true)}
@@ -650,15 +583,8 @@ export default function HomePage() {
           <span className="headline-top">BE SEEN</span>
           <span className="headline-bottom">IN SPORT</span>
         </button>
-        <button
-          type="button"
-          className="play-button"
-          aria-label="Watch the SUPATALENTED video"
-          onClick={() => setShowPromoVideo(true)}
-        >
-          <span className="play-triangle" aria-hidden="true" />
-        </button>
-        <div className="cta-wrap">
+        <div className="hero-layout-space" aria-hidden="true" />
+        <div className="cta-wrap" ref={heroCtaRef}>
           <button
             type="button"
             className="cta"
@@ -832,29 +758,6 @@ export default function HomePage() {
             </span>
           </div>
           </section>
-        </div>
-      )}
-      {showPromoVideo && (
-        <div className="promo-overlay" role="dialog" aria-modal="true">
-          <button
-            ref={videoCloseButtonRef}
-            type="button"
-            className="promo-close"
-            aria-label="Close video"
-            onClick={() => setShowPromoVideo(false)}
-          >
-            ×
-          </button>
-          <video
-            className="promo-video"
-            controls
-            autoPlay
-            playsInline
-            preload="metadata"
-          >
-            <source src="/videos/beseen.mp4" type="video/mp4" />
-            Your browser does not support video playback.
-          </video>
         </div>
       )}
     </main>
